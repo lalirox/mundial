@@ -381,6 +381,7 @@
     <a href="#calendario">CALENDARIO</a>
     <a href="#selecciones">SELECCIONES</a>
     <a href="#seguimiento">SEGUIMIENTO</a>
+    <a href="#novelty">RARITAS</a>
   </nav>
 </header>
 
@@ -1183,7 +1184,82 @@
     </div>
     <p style="font-size:0.75rem;color:var(--text-dim);margin-top:0.5rem;">Los resultados se actualizarán manualmente conforme avance el torneo.</p>
   </div>
-</section>
+  </section>
+
+  <!-- APUESTAS RARITAS / NOVELTY -->
+  <section id="novelty" class="section-card">
+    <h2 class="section-title"><span class="gold">🎪</span> <span class="blood">APUESTAS RARITAS</span> <span class="gold">— Lo que no sabías que podías apostar</span></h2>
+    <div class="summary-box">
+      <strong>¿A poco se puede apostar en eso?</strong> Sí. Caliente tiene una sección de <strong>Especiales</strong> donde puedes apostar desde qué canción va a cantar Belinda hasta el color de la camiseta de México. No es para hacerte rico, es para que el jueves veas la inauguración con otros ojos. Aquí las mejores:
+    </div>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>🎪 Apuesta</th>
+            <th>🏷️ Momio</th>
+            <th>🎯 ¿Le entramos?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🎤 Belinda canta un tema INÉDITO (no "Bella Traición") en la inauguración</td>
+            <td class="num">~+250</td>
+            <td><span class="badge badge-green">🟢 Tranquilo</span> — La Belensa fue vista ensayando con Shakira. Suena más probable de lo que parece.</td>
+          </tr>
+          <tr>
+            <td>🎤 Belinda canta "Bella Traición" en la inauguración</td>
+            <td class="num">~+600</td>
+            <td><span class="badge badge-yellow">🟡 Con cuidado</span> — Sería épico pero ella ya dijo que "es otra etapa".</td>
+          </tr>
+          <tr>
+            <td>👕 México juega de <strong>VERDE</strong> en el inaugural</td>
+            <td class="num">~+200</td>
+            <td><span class="badge badge-yellow">🟡 Con cuidado</span> — Históricamente México abre de verde en mundiales. Pero la FIFA puede poner local de blanco.</td>
+          </tr>
+          <tr>
+            <td>👕 México juega de <strong>BLANCO</strong> en el inaugural</td>
+            <td class="num">~+150</td>
+            <td><span class="badge badge-green">🟢 Tranquilo</span> — Localía. El Azteca vestido de blanco es lo más probable.</td>
+          </tr>
+          <tr>
+            <td>🇲🇽 Alejandro Fernández se <strong>equivoca</strong> en el himno</td>
+            <td class="num">~+800</td>
+            <td><span class="badge badge-red">🔴 Volado</span> — El Potrillo es profesional, pero 87,000 personas y los nervios... nunca se sabe.</td>
+          </tr>
+          <tr>
+            <td>🇲🇽 Alejandro Fernández canta el himno en menos de 1:30 min</td>
+            <td class="num">~+300</td>
+            <td><span class="badge badge-yellow">🟡 Con cuidado</span> — Los himnos en mundiales los alargan. Pero si lo hace rápido, pega.</td>
+          </tr>
+          <tr>
+            <td>🎤 Shakira <strong>llora</strong> durante su presentación</td>
+            <td class="num">~+400</td>
+            <td><span class="badge badge-yellow">🟡 Con cuidado</span> — Shakira es sentimental. Una presentación mundialista en el Azteca... lágrima asegurada.</td>
+          </tr>
+          <tr>
+            <td>🌧️ La inauguración se <strong>retrasa por lluvia</strong></td>
+            <td class="num">~+500</td>
+            <td><span class="badge badge-green">🟢 Tranquilo</span> — 90% de probabilidad de tormenta eléctrica. El Azteca tiene drenaje, pero si hay relámpagos, la FIFA no se arriesga.</td>
+          </tr>
+          <tr>
+            <td>⚽ Messi anota en su primer partido (🇦🇷 Argentina vs 🇩🇿 Argelia, 14 Jun)</td>
+            <td class="num">~+150</td>
+            <td><span class="badge badge-green">🟢 Tranquilo</span> — Llega en forma (titular vs Islandia hoy). Argelia no es defensa férrea.</td>
+          </tr>
+          <tr>
+            <td>⚽ Messi <strong>no anota</strong> en ningún partido de grupos</td>
+            <td class="num">~+2000</td>
+            <td><span class="badge badge-red">🔴 Volado</span> — Sería su primer Mundial sin gol en grupos. Improbable, pero si pasa, paga como lotería.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="summary-box" style="margin-top:0.8rem;border-left-color:var(--gold);">
+      <strong>🎪 En cristiano:</strong> Estas son apuestas pa' divertirse, no pa' hacer la jubilación. Mételes $50-100 a las que más te laten y ve la inauguración con más emoción. La única con fundamento real es la de la lluvia (90% de probabilidad) — esa casi es regalado.
+    </div>
+  </section>
 
 <!-- FOOTER -->
 <footer>
@@ -1237,7 +1313,7 @@ function toggleProfile(header) {
 // ===== GROUP SEARCH =====
 function filterGroups() {
   const q = document.getElementById('groupSearch').value.toLowerCase().trim();
-  document.querySelectorAll('.group-card').forEach(card => {
+  document.querySelectorAll('.group-cardc').forEach(card => {
     const teams = card.getAttribute('data-teams') || '';
     card.style.display = (!q || teams.includes(q)) ? '' : 'none';
   });
