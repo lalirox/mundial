@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pocos Caviares — Mundial 2026</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #0a0a0f;
+    color: #e0e0e0;
+    line-height: 1.6;
+    min-height: 100vh;
+    background-image: radial-gradient(ellipse at 50% 0%, rgba(139,0,0,0.08) 0%, transparent 60%),
+                      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,215,0,0.015) 2px, rgba(255,215,0,0.015) 4px);
+  }
+  ::selection { background: #8b0000; color: #ffd700; }
+  :root {
+    --blood: #cc0000;
+    --blood-dark: #8b0000;
+    --gold: #ffd700;
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --text-mid: #aaa;
+    --border: #2a2a3a;
+    --green: #00cc66;
+    --red: #cc0000;
+    --yellow: #ffcc00;
+    --orange: #ff8800;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #0a0a0f; }
+  ::-webkit-scrollbar-thumb { background: #3a1a1a; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #5a1a1a; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(180deg, #1a0a0a 0%, #0a0a0f 100%);
+    border-bottom: 2px solid var(--blood);
+    padding: 1.5rem 1rem 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(204,0,0,0.15);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blood-dark), var(--gold), var(--blood), var(--gold), var(--blood-dark));
+    background-size: 200% 100%;
+    animation: shine 4s linear infinite;
+  }
+  @keyframes shine {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+  .logo { font-size: 1.6rem; font-weight: 900; letter-spacing: 2px; }
+  .logo .blood { color: var(--blood); }
+  .logo .gold { color: var(--gold); }
+  .countdown {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin: 0.5rem 0 0.3rem;
+  }
+  .countdown span { display: inline-block; min-width: 2ch; }
+
+  /* ===== NAV ===== */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0 0.2rem;
+  }
+  nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: var(--gold); border-color: var(--gold); background: rgba(255,215,0,0.05); }
+
+  /* ===== SECTIONS ===== */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  section h2 {
+    color: var(--blood);
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  section h2 .gold { color: var(--gold); }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  /* ===== GROUPS GRID ===== */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .group-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blood);
+    border-radius: 6px;
+    padding: 0.8rem;
+    transition: border-color 0.2s;
+  }
+  .group-card:hover { border-left-color: var(--gold); }
+  .group-card h3 { color: var(--gold); font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .group-card table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
+  .group-card td { padding: 0.25rem 0.3rem; }
+  .group-card .pos { color: var(--text-dim); width: 1.5rem; text-align: center; }
+  .group-card .flag { font-size: 1.1rem; }
+  .group-card .rank { color: var(--text-dim); font-size: 0.7rem; }
+  .group-card .pred { margin-top: 0.5rem; font-size: 0.82rem; color: var(--text-mid); }
+  .group-card .pred strong { color: var(--gold); }
+  .group-card .key-match { font-size: 0.78rem; color: var(--orange); margin-top: 0.3rem; }
+  .group-card .surprise { font-size: 0.78rem; color: var(--blood); margin-top: 0.2rem; }
+
+  /* ===== TABLES ===== */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+  .data-table th {
+    background: var(--bg3);
+    color: var(--gold);
+    padding: 0.5rem 0.4rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--blood);
+  }
+  .data-table td {
+    padding: 0.4rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .data-table tr:hover td { background: rgba(204,0,0,0.04); }
+  .data-table .num { font-family: 'Courier New', Courier, monospace; text-align: right; }
+  .data-table .flag-cell { font-size: 1.15rem; }
+  .value-green { color: var(--green); font-weight: 700; }
+  .value-red { color: var(--red); font-weight: 700; }
+  .value-neutral { color: var(--text-mid); }
+
+  /* ===== SEARCH ===== */
+  .search-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-box:focus { border-color: var(--blood); }
+
+  /* ===== TABS ===== */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem; }
+  .tab-btn {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px 4px 0 0;
+    padding: 0.5rem 0.8rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--gold); border-color: var(--gold); }
+  .tab-btn.active {
+    background: var(--bg3);
+    color: var(--gold);
+    border-color: var(--blood);
+    border-bottom-color: var(--bg3);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ===== ROI BAR (shared with old bankroll class names) ===== */
+  .bankroll-bar {
+    background: var(--bg3);
+    border-radius: 10px;
+    height: 24px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+    position: relative;
+  }
+  .bankroll-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blood-dark), var(--blood));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+    min-width: 30px;
+  }
+  .bankroll-label {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ===== TOOLTIP ===== */
+  .tip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed var(--text-dim);
+  }
+  .tip .tip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a2a;
+    color: var(--text);
+    border: 1px solid var(--blood);
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    max-width: 280px;
+    white-space: normal;
+  }
+  .tip:hover .tip-text { visibility: visible; opacity: 1; }
+
+  /* ===== TEAM PROFILES ===== */
+  .team-profile {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+  }
+  .team-profile-header {
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .team-profile-header:hover { background: rgba(204,0,0,0.05); }
+  .team-profile-header .arrow { transition: transform 0.3s; color: var(--blood); }
+  .team-profile-header.open .arrow { transform: rotate(180deg); }
+  .team-profile-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1rem;
+  }
+  .team-profile-body.open { max-height: 600px; padding: 0.5rem 1rem 1rem; }
+  .team-profile-body table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
+  .team-profile-body td { padding: 0.25rem 0.3rem; border-bottom: 1px solid var(--border); }
+  .team-profile-body .label { color: var(--text-dim); width: 40%; }
+
+  /* ===== MATRIX ===== */
+  .matrix-table { font-size: 0.78rem; }
+  .matrix-table td { padding: 0.3rem; }
+  .matrix-table .check { color: var(--green); }
+  .matrix-table .cross { color: var(--red); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 640px) {
+    .logo { font-size: 1.2rem; }
+    .countdown { font-size: 0.9rem; }
+    nav a { font-size: 0.68rem; padding: 0.25rem 0.4rem; }
+    section h2 { font-size: 1.2rem; }
+    .groups-grid { grid-template-columns: 1fr; }
+    .data-table { font-size: 0.7rem; }
+    .data-table th { font-size: 0.65rem; }
+    .data-table td { padding: 0.25rem; }
+  }
+
+  /* ===== MISC ===== */
+  .badge { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.7rem; font-weight: 700; }
+  .badge-green { background: rgba(0,204,102,0.15); color: var(--green); }
+  .badge-red { background: rgba(204,0,0,0.15); color: var(--red); }
+  .badge-yellow { background: rgba(255,204,0,0.15); color: var(--yellow); }
+  .badge-neutral { background: rgba(170,170,170,0.1); color: var(--text-mid); }
+  .summary-box {
+    background: var(--bg3);
+    border-left: 3px solid var(--gold);
+    padding: 0.8rem;
+    border-radius: 0 6px 6px 0;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
+  }
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+  .inline-icon { font-size: 1.1rem; }
+  .roi-positive { color: var(--green); }
+  .roi-negative { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo"><span class="blood">Pocos Caviares</span> <span class="gold">— Mundial 2026</span></div>
+  <div style="font-size:0.75rem;color:var(--gold);margin-bottom:0.15rem;letter-spacing:1px;">🎰 LA CASA DE APUESTAS DE LOS QUE SABEN</div>
+  <div style="font-size:0.7rem;color:var(--text-dim);margin-bottom:0.2rem;">📅 Al día: 9 Junio 2026 — 🇲🇽🇺🇸🇨🇦</div>
+  <div class="countdown" id="countdown">⏳ Cargando cuenta regresiva...</div>
+  <div style="display:flex;justify-content:center;gap:1rem;font-size:0.7rem;color:var(--text-dim);margin-bottom:0.4rem;">
+    <span>💰 Apuestas</span>
+    <span>⚡ En Vivo</span>
+    <span>🏆 Ganadores</span>
+    <span>🎲 Promos</span>
+  </div>
+  <nav>
+    <a href="#noticias">NOTICIAS</a>
+    <a href="#grupos">GRUPOS</a>
+    <a href="#mercados">MERCADOS</a>
+    <a href="#apuestas">APUESTAS</a>
+    <a href="#parlays">PARLAYS</a>
+    <a href="#teoria">TEORÍA</a>
+    <a href="#lesiones">LESIONES</a>
+    <a href="#calendario">CALENDARIO</a>
+    <a href="#selecciones">SELECCIONES</a>
+    <a href="#seguimiento">SEGUIMIENTO</a>
+  </nav>
+</header>
+
+<!-- ÚLTIMAS NOTICIAS -->
+<section id="noticias">
+  <h2>📰 <span class="gold">ÚLTIMAS NOTICIAS</span> — 9 Jun 2026</h2>
+  <div class="groups-grid" style="grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));">
+    <div class="group-card" style="border-left-color:var(--gold);">
+      <h3>🏛️ 11 de junio: feriado oficial por el Mundial</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Sheinbaum publicó decreto en el DOF: se suspenden labores en oficinas públicas y privadas de la CDMX el jueves. También aplica para escuelas en toda la ciudad. "Que no haya tráfico, que no haya problemas el día de la inauguración", dijo la presidenta. El 11 de junio será oficialmente día de asueto en la capital.</p>
+      <div class="key-match">📌 Decreto publicado hoy — CDMX no trabaja el jueves</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--red);">
+      <h3>🚧 CNTE va al Azteca HOY — aseguran explosivos</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">La CNTE se moviliza este martes hacia el Estadio Azteca, a solo 48 horas del inaugural. Se esperan al menos 10 manifestaciones en CDMX. La SSC aseguró 45 artefactos explosivos caseros en autobuses de normalistas de Ayotzinapa que llegaron a apoyar las protestas. Sheinbaum sugirió que las protestas están financiadas. Brugada garantiza seguridad.</p>
+      <div class="key-match">📌 45 explosivos asegurados — CNTE promete protesta pacífica</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--yellow);">
+      <h3>🌧️ Tormenta eléctrica pronosticada para el inaugural</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">El Servicio Meteorológico pronostica 90% de probabilidad de lluvia para el jueves 11 de junio en CDMX, con posibles tormentas eléctricas desde las 3pm y hasta 14mm de agua. El Azteca tiene buen drenaje pero una tormenta así puede retrasar el México vs Sudáfrica. Ojo: el clima también afecta el juego — cancha mojada, balón rápido.</p>
+      <div class="key-match">📌 90% lluvia — riesgo de retraso en el inaugural</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--blood);">
+      <h3>🛂 EEUU niega entrada a árbitro somalí</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Omar Artan, primer árbitro somalí en la historia del Mundial, fue rechazado en el aeropuerto de Miami el sábado. "Vetting concerns", dijeron las autoridades. AP, NYT y El País confirman: no podrá arbitrar. Somalia exige explicaciones. Un escándalo diplomático a días del torneo.</p>
+      <div class="key-match">📌 AP y NYT confirman — tensión diplomática EEUU-Somalia</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--green);">
+      <h3>⚽ Argentina vs Islandia HOY — Messi juega</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Argentina cierra preparación esta noche vs Islandia en Alabama. Messi será titular después de superar una molestia muscular que traía desde Miami. Scaloni probará el 11 que enfrentará a Argelia el 16 de junio en el debut del Grupo J. Balerdi es baja confirmada; el reemplazo se define hoy.</p>
+      <div class="key-match">📌 10pm CDMX — Jordan-Hare Stadium, Alabama</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--orange);">
+      <h3>🇫🇷🇪🇸🇳🇱 Últimos amistosos HOY</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Francia vs Irlanda del Norte, España vs Arabia Saudita, Países Bajos vs Uzbekistán — todos juegan hoy su último ensayo.</p>
+      <div class="key-match">⚽ Varios horarios — Últimas pruebas</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--gold);">
+      <h3>🇲🇽 Zona mixta del Tri HOY</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Jugadores de México hablan a las 9:30 AM. Últimas declaraciones antes del debut contra Sudáfrica el jueves.</p>
+      <div class="key-match">🎙️ 9:30 AM CDMX — Conferencia</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--blood);">
+      <h3>💰 FIFA 'Super Fan Shoutout'</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Aficionados pagan para aparecer en pantallas gigantes de estadios. FIFA monetiza cada rincón del torneo.</p>
+      <div class="key-match">📌 Nueva fuente de ingresos FIFA</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--gold);">
+      <h3>🔮 Profecía Baba Vanga viral</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">"Nueva luz en el cielo durante gran evento deportivo" en 2026. La predicción de la vidente búlgara se viraliza a días del Mundial.</p>
+      <div class="key-match">📌 Trending — ¿Se cumplirá?</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--red);">
+      <h3>🚫 CNTE toma casetas a 2 días del inaugural</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">Maestros de la CNTE mantienen bloqueos en la México-Puebla, Tuxtla y Chiapas desde el 1 de junio. La caseta de Chiapa de Corzo lleva días tomada. El Zócalo amaneció vallado otra vez. Justo cuando el Mundial arranca el jueves en el Azteca — la pregunta es si van a escalar o aflojar.</p>
+      <div class="key-match">🚧 México-Puebla, Tuxtla, Chiapas — sigue sin circular</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--yellow);">
+      <h3>🏟️ Dueños de palcos del Azteca: "FIFA no nos da boletos"</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">La Asociación Mexicana de Titulares de Palcos y Plateas del Estadio Ciudad de México denunció que FIFA aún no les entrega los boletos de sus palcos para el Mundial, ni siquiera para el partido inaugural. La CNTE les ofreció apoyo para presionar. Al final FIFA confirmó que los boletos serán electrónicos — pero el show ya empezó.</p>
+      <div class="key-match">📌 Escándalo a horas del México vs Sudáfrica</div>
+    </div>
+    <div class="group-card" style="border-left-color:var(--blood);">
+      <h3>🇺🇸 Redadas ICE en Nueva York: 800 arrestos "colaterales"</h3>
+      <p style="font-size:0.82rem;color:var(--text-mid);">ICE está arrestando a más de 1,100 personas al día en todo EEUU. En NY han caído 811 migrantes "colaterales" — gente que estaba en el lugar equivocado. Hasta un hospital en Brooklyn fue allanado. Con el Mundial en EEUU, la comunidad migrante teme que las redadas se intensifiquen durante el torneo, cuando habrá más movimiento y visibilidad.</p>
+      <div class="key-match">📌 1,100+ arrestos/día — récord bajo Trump</div>
+    </div>
+  </div>
+</section>
+
+<!-- GRUPOS -->
+<section id="grupos">
+  <h2>🗂️ <span class="gold">GRUPOS</span> — Cómo se arma</h2>
+  <input type="text" class="search-box" id="groupSearch" placeholder="🔍 Buscar selección..." oninput="filterGroups()">
+  <div class="groups-grid" id="groupsGrid">
+    <!-- Grupo A -->
+    <div class="group-card" data-teams="mexico corea sudafrica chequia republica checa">
+      <h3>🇦 Grupo A — México</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇲🇽</td><td><strong>México</strong></td><td class="rank">#15</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇰🇷</td><td>Corea del Sur</td><td class="rank">#23</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇨🇿</td><td>Chequia</td><td class="rank">#35</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇿🇦</td><td>Sudáfrica</td><td class="rank">#60</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇲🇽 México &nbsp;|&nbsp; 2° 🇰🇷 Corea</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇲🇽 México vs 🇰🇷 Corea (18 Jun, Akron)</div>
+      <div class="surprise">⚠️ Corea gana el grupo si vence a Chequia en el debut</div>
+    </div>
+    <!-- Grupo B -->
+    <div class="group-card" data-teams="canada suiza qatar bosnia">
+      <h3>🇧 Grupo B — Canadá</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇨🇦</td><td><strong>Canadá</strong></td><td class="rank">#40</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇨🇭</td><td>Suiza</td><td class="rank">#18</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇶🇦</td><td>Qatar</td><td class="rank">#50</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇧🇦</td><td>Bosnia</td><td class="rank">#55</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇨🇭 Suiza &nbsp;|&nbsp; 2° 🇨🇦 Canadá</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇨🇦 Canadá vs 🇨🇭 Suiza</div>
+      <div class="surprise">⚠️ Bosnia elimina a Canadá — Džeko factor experiencia</div>
+    </div>
+    <!-- Grupo C -->
+    <div class="group-card" data-teams="brasil marruecos haiti escocia">
+      <h3>🇨 Grupo C — Brasil</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇧🇷</td><td><strong>Brasil</strong></td><td class="rank">#5</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇲🇦</td><td>Marruecos</td><td class="rank">#13</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</td><td>Escocia</td><td class="rank">#42</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇭🇹</td><td>Haití</td><td class="rank">#85</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇧🇷 Brasil &nbsp;|&nbsp; 2° 🇲🇦 Marruecos</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇧🇷 Brasil vs 🇲🇦 Marruecos</div>
+      <div class="surprise">⚠️ Marruecos gana el grupo — Brasil viene con bajas (Rodrygo, Militão)</div>
+    </div>
+    <!-- Grupo D -->
+    <div class="group-card" data-teams="usa eeuu paraguay australia turquia">
+      <h3>🇩 Grupo D — Estados Unidos</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇺🇸</td><td><strong>EEUU</strong></td><td class="rank">#16</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇹🇷</td><td>Turquía</td><td class="rank">#30</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇵🇾</td><td>Paraguay</td><td class="rank">#45</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇦🇺</td><td>Australia</td><td class="rank">#39</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇺🇸 EEUU &nbsp;|&nbsp; 2° 🇹🇷 Turquía</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇺🇸 EEUU vs 🇵🇾 Paraguay</div>
+      <div class="surprise">⚠️ Paraguay avanza como 2° si Turquía se autodestruye</div>
+    </div>
+    <!-- Grupo E -->
+    <div class="group-card" data-teams="alemania curazao costa de marfil ecuador">
+      <h3>🇪 Grupo E — Alemania</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇩🇪</td><td><strong>Alemania</strong></td><td class="rank">#10</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇪🇨</td><td>Ecuador</td><td class="rank">#36</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇨🇮</td><td>Costa de Marfil</td><td class="rank">#55</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇨🇼</td><td>Curazao</td><td class="rank">#80</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇩🇪 Alemania &nbsp;|&nbsp; 2° 🇪🇨 Ecuador</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇩🇪 Alemania vs 🇪🇨 Ecuador</div>
+      <div class="surprise">⚠️ Ecuador se cuela como 2° — Enner Valencia factor experiencia</div>
+    </div>
+    <!-- Grupo F -->
+    <div class="group-card" data-teams="paises bajos holanda japon suecia tunez">
+      <h3>🇫 Grupo F — Países Bajos</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇳🇱</td><td><strong>Países Bajos</strong></td><td class="rank">#8</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇸🇪</td><td>Suecia</td><td class="rank">#25</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇯🇵</td><td>Japón</td><td class="rank">#20</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇹🇳</td><td>Túnez</td><td class="rank">#33</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇳🇱 Países Bajos &nbsp;|&nbsp; 2° 🇸🇪 Suecia</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇳🇱 Países Bajos vs 🇸🇪 Suecia</div>
+      <div class="surprise">⚠️ Japón repite 2022 — puede ganar el grupo</div>
+    </div>
+    <!-- Grupo G -->
+    <div class="group-card" data-teams="belgica egipto iran nueva zelanda">
+      <h3>🇬 Grupo G — Bélgica</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇧🇪</td><td><strong>Bélgica</strong></td><td class="rank">#7</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇪🇬</td><td>Egipto</td><td class="rank">#34</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇮🇷</td><td>Irán</td><td class="rank">#28</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇳🇿</td><td>Nueva Zelanda</td><td class="rank">#72</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇧🇪 Bélgica &nbsp;|&nbsp; 2° 🇪🇬 Egipto</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇧🇪 Bélgica vs 🇪🇬 Egipto</div>
+      <div class="surprise">⚠️ Egipto avanza como 2° — Salah en su último baile mundialista</div>
+    </div>
+    <!-- Grupo H -->
+    <div class="group-card" data-teams="espana cabo verde arabia saudita uruguay">
+      <h3>🇭 Grupo H — España</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇪🇸</td><td><strong>España</strong></td><td class="rank">#6</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇺🇾</td><td>Uruguay</td><td class="rank">#12</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇸🇦</td><td>Arabia Saudita</td><td class="rank">#56</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇨🇻</td><td>Cabo Verde</td><td class="rank">#70</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇪🇸 España &nbsp;|&nbsp; 2° 🇺🇾 Uruguay</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇪🇸 España vs 🇺🇾 Uruguay</div>
+      <div class="surprise">⚠️ Uruguay gana el grupo — Bielsa factor, revancha sudamericana</div>
+    </div>
+    <!-- Grupo I -->
+    <div class="group-card" data-teams="francia senegal irak noruega">
+      <h3>🇮 Grupo I — Francia</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇫🇷</td><td><strong>Francia</strong></td><td class="rank">#2</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇸🇳</td><td>Senegal</td><td class="rank">#22</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇳🇴</td><td>Noruega</td><td class="rank">#44</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇮🇶</td><td>Irak</td><td class="rank">#62</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇫🇷 Francia &nbsp;|&nbsp; 2° 🇸🇳 Senegal</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇸🇳 Senegal vs 🇳🇴 Noruega — pelea por 2° lugar</div>
+      <div class="surprise">⚠️ Noruega avanza como 2° — Haaland factor goleador</div>
+    </div>
+    <!-- Grupo J -->
+    <div class="group-card" data-teams="argentina argelia austria jordania">
+      <h3>🇯 Grupo J — Argentina</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇦🇷</td><td><strong>Argentina</strong></td><td class="rank">#3</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇩🇿</td><td>Argelia</td><td class="rank">#43</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇦🇹</td><td>Austria</td><td class="rank">#28</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇯🇴</td><td>Jordania</td><td class="rank">#67</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇦🇷 Argentina &nbsp;|&nbsp; 2° 🇩🇿 Argelia</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇦🇷 Argentina vs 🇦🇹 Austria</div>
+      <div class="surprise">⚠️ Austria se cuela como 2° — sorpresa europea, equipo sólido táctico</div>
+    </div>
+    <!-- Grupo K -->
+    <div class="group-card" data-teams="portugal dr congo rep dem congo colombia uzbekistan">
+      <h3>🇰 Grupo K — Portugal</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🇵🇹</td><td><strong>Portugal</strong></td><td class="rank">#9</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇨🇴</td><td>Colombia</td><td class="rank">#17</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇨🇩</td><td>DR Congo</td><td class="rank">#60</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇺🇿</td><td>Uzbekistán</td><td class="rank">#65</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🇵🇹 Portugal &nbsp;|&nbsp; 2° 🇨🇴 Colombia</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🇵🇹 Portugal vs 🇨🇴 Colombia</div>
+      <div class="surprise">⚠️ Colombia gana el grupo — Luis Díaz factor, CR7 41 años</div>
+    </div>
+    <!-- Grupo L -->
+    <div class="group-card" data-teams="inglaterra croacia ghana panama">
+      <h3>🇱 Grupo L — Inglaterra</h3>
+      <table>
+        <tr><td class="pos">1</td><td class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</td><td><strong>Inglaterra</strong></td><td class="rank">#4</td></tr>
+        <tr><td class="pos">2</td><td class="flag">🇭🇷</td><td>Croacia</td><td class="rank">#14</td></tr>
+        <tr><td class="pos">3</td><td class="flag">🇬🇭</td><td>Ghana</td><td class="rank">#48</td></tr>
+        <tr><td class="pos">4</td><td class="flag">🇵🇦</td><td>Panamá</td><td class="rank">#55</td></tr>
+      </table>
+      <div class="pred"><strong>Le apostamos a:</strong> 1° 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra &nbsp;|&nbsp; 2° 🇭🇷 Croacia</div>
+      <div class="key-match">⚔️ <strong>El partido que define:</strong> 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra vs 🇭🇷 Croacia</div>
+      <div class="surprise">⚠️ Croacia hace de las suyas y gana el grupo — veteranos</div>
+    </div>
+  </div>
+  <div class="summary-box">
+    <strong>📐 Formato:</strong> 48 equipos, 12 grupos de 4. Avanzan: Top 2 + 8 mejores terceros → 32vos de final. <strong>Partidos totales:</strong> 104 en 39 días.
+  </div>
+</section>
+
+<!-- MERCADOS -->
+<section id="mercados">
+  <h2>🎲 <span class="gold">MERCADOS</span> — Lo que dice la raza vs Lo que paga la casa</h2>
+  <h3 style="color:var(--text-mid);font-size:0.9rem;margin-bottom:0.5rem;">🏆 Campeón del Mundo — Las 12 que jalan</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th></th><th>Juega en</th><th>Lo que dice la raza que sabe</th><th>Lo que paga la casa</th><th>Quién paga mejor</th><th>¿Le entramos?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="flag-cell">🇪🇸</td><td><strong>España</strong></td><td class="num">16%</td><td class="num">+600</td><td class="num value-green">+1.7%</td><td><span class="badge badge-green">🟢 Negocio</span></td></tr>
+        <tr><td class="flag-cell">🇫🇷</td><td><strong>Francia</strong></td><td class="num">16%</td><td class="num">+500</td><td class="num value-neutral">-0.7%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+        <tr><td class="flag-cell">🏴󠁧󠁢󠁥󠁮󠁧󠁿</td><td><strong>Inglaterra</strong></td><td class="num">11%</td><td class="num">+800</td><td class="num value-neutral">0%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+        <tr><td class="flag-cell">🇧🇷</td><td><strong>Brasil</strong></td><td class="num">9%</td><td class="num">+900</td><td class="num value-neutral">0%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+        <tr style="background:rgba(255,215,0,0.05);border-left:3px solid var(--gold);">
+          <td class="flag-cell">🇩🇪</td><td><strong>Alemania</strong> 🎯</td><td class="num">9%</td><td class="num">+1200</td><td class="num value-green">+1.3%</td><td><span class="badge badge-green">🟢 VALOR 🏆</span></td></tr>
+        <tr><td class="flag-cell">🇦🇷</td><td><strong>Argentina</strong></td><td class="num">8%</td><td class="num">+1400</td><td class="num value-green">+1.3%</td><td><span class="badge badge-green">🟢 Negocio</span></td></tr>
+        <tr><td class="flag-cell">🇵🇹</td><td><strong>Portugal</strong></td><td class="num">5%</td><td class="num">+2000</td><td class="num value-neutral">0%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+        <tr><td class="flag-cell">🇳🇱</td><td><strong>Países Bajos</strong></td><td class="num">4%</td><td class="num">+3000</td><td class="num value-green">+0.8%</td><td><span class="badge badge-green">🟢 Ligero</span></td></tr>
+
+        <tr><td class="flag-cell">🇧🇪</td><td><strong>Bélgica</strong></td><td class="num">3%</td><td class="num">+2800</td><td class="num value-neutral">0%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+        <tr><td class="flag-cell">🇺🇸</td><td><strong>EEUU</strong></td><td class="num">3%</td><td class="num">+4000</td><td class="num value-green">+0.6%</td><td><span class="badge badge-green">🟢 Ligero</span></td></tr>
+        <tr><td class="flag-cell">🇲🇽</td><td><strong>México</strong></td><td class="num">2%</td><td class="num">+5000</td><td class="num value-neutral">0%</td><td><span class="badge badge-neutral">⚪ Neutro</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box" style="border-left-color:var(--blood);">
+    <strong>🎯 La joyita del torneo:</strong> 🇩🇪 <strong>Alemania a +1200</strong> — Polymarket 9% vs casa 7.7%. Bajo volumen en Poly ($288K), racha invicta, Nagelsmann, grupo accesible. <strong>ÉNTRELE AHORA.</strong>
+  </div>
+
+  <h3 style="color:var(--text-mid);font-size:0.9rem;margin-top:1.5rem;margin-bottom:0.5rem;">📊 Otras apuestas chidas en Polymarket</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Mercado</th><th>Prob.</th><th>Vol 24h</th><th>El chisme</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Mbappé Balón de Oro</td><td class="num">22%</td><td class="num">~$120K</td><td>El que todos traen en la quiniela</td></tr>
+        <tr><td>⚽ Mbappé Bota de Oro</td><td class="num">18%</td><td class="num">~$90K</td><td>18 goles en 2 Mundiales</td></tr>
+        <tr><td>📊 ¿Récord de goles? (&gt;172)</td><td class="num">-120</td><td class="num">~$45K</td><td>🟢 Sí — formato expandido</td></tr>
+        <tr><td>🇲🇽 México pasa a 4tos</td><td class="num">~12%</td><td class="num">~$30K</td><td>Baja liquidez</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- APUESTAS -->
+<section id="apuestas">
+  <h2>💰 <span class="gold">APUESTAS</span> — Lo que le metemos y cómo la controlamos</h2>
+
+  <h3 style="color:var(--green);font-size:0.95rem;margin-bottom:0.5rem;">🟢 Apuestas seguras — Tranquilo</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Partido / Mercado</th><th>Apuesta</th><th>Cuota</th><th>Lana a meter</th><th>¿Qué tan cagado?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🇲🇽 México pasa de grupo</td><td>Pasa a 32vos</td><td class="num">~1.30</td><td class="num">$300 / $1,000</td><td><span class="badge badge-green">Muy bajo</span></td></tr>
+        <tr><td>🇧🇷 Brasil gana Grupo C</td><td>Líder de grupo</td><td class="num">~1.25</td><td class="num">$200 / $1,000</td><td><span class="badge badge-green">Muy bajo</span></td></tr>
+        <tr><td>🇫🇷 Francia gana Grupo I</td><td>Líder de grupo</td><td class="num">~1.20</td><td class="num">$200 / $1,000</td><td><span class="badge badge-green">Muy bajo</span></td></tr>
+        <tr><td>🇲🇽 México vs 🇿🇦 Sudáfrica</td><td>México gana (Melbet)</td><td class="num">-184</td><td class="num">$300 / $1,000</td><td><span class="badge badge-green">Bajo</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:var(--yellow);font-size:0.95rem;margin-top:1.2rem;margin-bottom:0.5rem;">🟡 Apuestas con fundamento — Con cuidado</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Juega en</th><th>Apuesta</th><th>Cuota</th><th>Lana a meter</th><th>Negocio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🇩🇪 <strong>Alemania</strong></td><td>Campeón del Mundo</td><td class="num">+1200</td><td class="num">2-$300 / $1,000</td><td><span class="badge badge-green">🟢 Negocio</span></td></tr>
+        <tr><td>🇦🇷 Argentina</td><td>Campeón del Mundo</td><td class="num">+1400</td><td class="num">$100 / $1,000</td><td><span class="badge badge-green">🟢 Negocio</span></td></tr>
+        <tr><td>🇧🇪 Bélgica</td><td>Gana Grupo G</td><td class="num">~+200</td><td class="num">$100 / $1,000</td><td><span class="badge badge-yellow">🟡 Con cuidado</span></td></tr>
+        <tr><td>🇲🇦 Marruecos</td><td>Gana Grupo C</td><td class="num">~+300</td><td class="num">$100 / $1,000</td><td><span class="badge badge-yellow">🟡 Con cuidado</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:var(--orange);font-size:0.95rem;margin-top:1.2rem;margin-bottom:0.5rem;">🔴 Apuestas de volado — Pa' los que gustan jugar</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Juega en</th><th>Apuesta</th><th>Cuota</th><th>Lana a meter</th><th>Justificación</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🇵🇦 Panamá</td><td>Pasa de grupo</td><td class="num">~+350</td><td class="num">$50 / $1,000</td><td>Debutante CONCACAF, revancha 2018</td></tr>
+        <tr><td>🇨🇴 Colombia</td><td>Gana Grupo K</td><td class="num">~+200</td><td class="num">$50 / $1,000</td><td>Luis Díaz factor</td></tr>
+        <tr><td>🇯🇵 Japón</td><td>Gana Grupo F</td><td class="num">~+400</td><td class="num">$50 / $1,000</td><td>Ya hicieron historia en 2022</td></tr>
+        <tr><td>🐐 Messi</td><td>Bota de Oro</td><td class="num">+2000</td><td class="num">$50 / $1,000</td><td>Si Argentina llega lejos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box" style="margin-top:1rem;border-left-color:var(--red);">
+    <strong>🌎 Contexto que importa:</strong> La CNTE tiene tomadas casetas en la México-Puebla y Chiapas. Los dueños de palcos del Azteca están peleados con FIFA. Las redadas ICE en NY van a más de 1,100 arrestos diarios. Todo esto pasa mientras el Mundial arranca — y lo que pase fuera de la cancha también define cómo se mueven las apuestas.
+  </div>
+</section>
+
+<!-- PARLAYS -->
+<section id="parlays">
+  <h2>🎯 <span class="gold">PARLAYS</span> — Caliente.mx + Polymarket</h2>
+
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Parlay</th><th>Selecciones</th><th>Cuota Comb.</th><th>Lana a meter</th><th>Lo que ganas</th><th>¿Qué tan cagado?</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(0,204,102,0.08);">
+          <td><strong>🥇 El Seguro</strong></td>
+          <td>🇲🇽 México gana + 🇩🇪 Alemania gana + 🇲🇽 México clasifica</td>
+          <td class="num"><strong>1.71</strong></td>
+          <td class="num">La mitad (ej: $500)</td>
+          <td class="num value-green">+$710 c/u $1,000</td>
+          <td><span class="badge badge-green">Bajo</span></td>
+        </tr>
+        <tr style="background:rgba(255,204,0,0.08);">
+          <td><strong>🥈 Negocio medio</strong></td>
+          <td>🇲🇽 México clasifica + 🇩🇪 Alemania gana + 🇩🇪 Alemania 🏆 +1200</td>
+          <td class="num"><strong>15.02</strong></td>
+          <td class="num">Poquito (ej: $150)</td>
+          <td class="num value-green">+$14,020 c/u $1,000</td>
+          <td><span class="badge badge-yellow">Con cuidado</span></td>
+        </tr>
+        <tr style="background:rgba(204,0,0,0.08);">
+          <td><strong>🥉 El volado</strong></td>
+          <td>🇩🇪 Alemania gana + 🇵🇹 Portugal 🏆 +1200 + CR7 anota</td>
+          <td class="num"><strong>33.80</strong></td>
+          <td class="num">Unos pesos (ej: $50)</td>
+          <td class="num value-green">+$32,800 c/u $1,000</td>
+          <td><span class="badge badge-red">Volado</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="color:var(--green);font-size:0.95rem;margin-top:1.5rem;margin-bottom:0.5rem;">🥇 El Seguro — Cuota Combinada 1.71</h3>
+  <div class="card">
+    <div class="card-title" style="color:var(--green);">🟢 Tranquilo — 3 selecciones casi seguras</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" style="font-size:0.78rem;">
+        <thead>
+          <tr><th>#</th><th>Juega en</th><th>Mercado</th><th>Casa</th><th>Momio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>🇲🇽 México vs 🇿🇦 Sudáfrica</td><td>México gana</td><td>Melbet</td><td class="num">-184</td></tr>
+          <tr><td>2</td><td>🇩🇪 Alemania vs 🇨🇼 Curazao</td><td>Alemania gana</td><td>Novibet</td><td class="num">-2500</td></tr>
+          <tr><td>3</td><td>🇲🇽 México clasifica a octavos</td><td>Sí clasifica</td><td>Caliente</td><td class="num">-900</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="summary-box" style="margin-top:0.5rem;">
+      <strong>📊 En cristiano:</strong> México juega en su casa con 87,000 personas vs Sudáfrica que está 50 lugares abajo en el ranking. Alemania vs Curazao es básicamente un trámite. México clasificar a octavos es casi regalo. <strong>Le metes la mitad de tu lana — ganas poquito pero casi seguro.</strong>
+    </div>
+  </div>
+
+  <h3 style="color:var(--yellow);font-size:0.95rem;margin-top:1.5rem;margin-bottom:0.5rem;">🥈 Valor Medio — Cuota Combinada 15.02</h3>
+  <div class="card">
+    <div class="card-title" style="color:var(--yellow);">🟡 Con cuidado — 2 seguras + 1 con fundamento</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" style="font-size:0.78rem;">
+        <thead>
+          <tr><th>#</th><th>Juega en</th><th>Mercado</th><th>Casa</th><th>Momio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>🇲🇽 México clasifica a octavos</td><td>Sí clasifica</td><td>Caliente</td><td class="num">-900</td></tr>
+          <tr><td>2</td><td>🇩🇪 Alemania vs 🇨🇼 Curazao</td><td>Alemania gana</td><td>Novibet</td><td class="num">-2500</td></tr>
+          <tr><td>3</td><td>🇩🇪 <strong>Alemania 🏆 CAMPEÓN</strong></td><td>Ganador del Mundial</td><td>Caliente</td><td class="num" style="color:var(--gold);font-weight:700;">+1200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="summary-box" style="margin-top:0.5rem;border-left-color:var(--yellow);">
+      <strong>🎯 La jugada más lista del torneo:</strong> Alemania paga 12 pesos por cada peso que arriesgues. En Polymarket los que saben le dan más valor del que le dan las casas de apuestas. Curazao en su grupo = tiene el partido más fácil de todo el torneo para agarrar confianza. <strong>Le metes poquito ($150 de cada $1,000) — si pega, te cambia el mes.</strong>
+    </div>
+  </div>
+
+  <h3 style="color:var(--red);font-size:0.95rem;margin-top:1.5rem;margin-bottom:0.5rem;">🥉 El volado — Cuota Combinada 33.80</h3>
+  <div class="card">
+    <div class="card-title" style="color:var(--red);">🔴 Volado — Pa' los que gustan jugar</div>
+    <div style="overflow-x:auto;">
+      <table class="data-table" style="font-size:0.78rem;">
+        <thead>
+          <tr><th>#</th><th>Juega en</th><th>Mercado</th><th>Casa</th><th>Momio</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>🇩🇪 Alemania vs 🇨🇼 Curazao</td><td>Alemania gana</td><td>Novibet</td><td class="num">-2500</td></tr>
+          <tr><td>2</td><td>🇵🇹 <strong>Portugal 🏆 CAMPEÓN</strong></td><td>Ganador del Mundial</td><td>Novibet</td><td class="num" style="color:var(--gold);font-weight:700;">+1200</td></tr>
+          <tr><td>3</td><td>🇵🇹 Cristiano Ronaldo</td><td>Anota en cualquier partido</td><td>Est.</td><td class="num">+150</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="summary-box" style="margin-top:0.5rem;border-left-color:var(--red);">
+      <strong>🃏 El volado loco pero con fundamento:</strong> Portugal está mal pagado en las casas vs lo que realmente vale según el mercado. CR7 en su último Mundial, con hambre de gloria. Pero es un volado — por eso paga 33 pesos por cada peso. <strong>Le metes $50 de cada $1,000 — si pega, te compras un viaje.</strong>
+    </div>
+  </div>
+
+  <div class="summary-box" style="border-left-color:var(--gold);margin-top:1.5rem;">
+    <strong>🔗 ENLACES DIRECTOS:</strong>
+    <span style="display:inline-block;margin-left:0.5rem;">
+      <a href="https://caliente.mx" target="_blank" style="color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.3rem 0.8rem;border-radius:4px;margin:0.2rem;">🔥 Caliente.mx</a>
+      <a href="https://polymarket.com/event/fifaworldcup2026" target="_blank" style="color:var(--green);text-decoration:none;border:1px solid var(--green);padding:0.3rem 0.8rem;border-radius:4px;margin:0.2rem;">🎲 Polymarket</a>
+    </span>
+    <br><br>
+    <strong>📌 Cómo repartir tu lana (si traes $1,000 MXN):</strong>
+    <br>🐷 <strong>$500 al Seguro</strong> — casi dinero gratis
+    <br>🟡 <strong>$150 al Valor Medio</strong> — el volado con fundamento
+    <br>🇦🇷 <strong>$100 a Argentina campeón</strong> — por si las moscas
+    <br>🇵🇹 <strong>$50 a Portugal campeón</strong> — el lottery ticket
+    <br>💰 <strong>$200 guárdalos</strong> — pa' apostar en vivo durante el torneo
+  </div>
+</section>
+
+<!-- TEORÍA DE JUEGOS -->
+<section id="teoria">
+  <h2>🧩 <span class="gold">TEORÍA DE JUEGOS</span> — Los 4 Escenarios</h2>
+  <div class="tabs" id="scenarioTabs">
+    <button class="tab-btn active" onclick="switchScenario('A')">🔵 Escenario A — Como debe ser (55%)</button>
+    <button class="tab-btn" onclick="switchScenario('B')">🟡 Escenario B — El débil muerde (20%)</button>
+    <button class="tab-btn" onclick="switchScenario('C')">🟢 Escenario C — América manda (15%)</button>
+    <button class="tab-btn" onclick="switchScenario('D')">🔴 Escenario D — Se va todo al carajo (10%)</button>
+  </div>
+
+  <div class="tab-content active" id="scenarioA">
+    <div class="card">
+      <div class="card-title">🔵 Escenario A — "Como debe ser" (Prob: 55%)</div>
+      <p style="font-size:0.88rem;margin-bottom:0.5rem;">El escenario más probable. Favoritos ganan grupos, Alemania llega lejos, goleadas en fase de grupos.</p>
+      <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;padding-left:0;">
+        <li>✅ Francia y España pasan sin problemas</li>
+        <li>✅ México gana Grupo A (Corea 2°)</li>
+        <li>✅ Alemania llega lejos — mejor valor detectado</li>
+        <li>✅ Goleadas: Brasil, Alemania, EEUU</li>
+      </ul>
+      <div style="margin-top:0.5rem;font-size:0.82rem;">
+        <strong>Apuestas activas:</strong>
+        <span class="badge badge-green">Alemania campeón (+1200) — $2400</span>
+        <span class="badge badge-green">México gana Grupo A (~1.40) — $400</span>
+        <span class="badge badge-green">Over 2.5 en favoritos vs débiles</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="scenarioB">
+    <div class="card">
+      <div class="card-title">🟡 Escenario B — "El débil muerde" (Prob: 20%)</div>
+      <p style="font-size:0.88rem;margin-bottom:0.5rem;">El formato expandido nivela hacia arriba. Debutantes dan campanadas.</p>
+      <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;padding-left:0;">
+        <li>✅ Lluvia en CDMX cambia dinámica del Grupo A</li>
+        <li>✅ Un debutante (Austria, Jordania, DR Congo, Uzbekistán, Panamá, Cabo Verde) avanza de grupo</li>
+        <li>✅ Curazao o Irak roban puntos</li>
+        <li>✅ Under en partidos de favoritos vs debutantes</li>
+      </ul>
+      <div style="margin-top:0.5rem;font-size:0.82rem;">
+        <strong>Apuestas activas:</strong>
+        <span class="badge badge-green">Panamá pasa de grupo (+350)</span>
+        <span class="badge badge-green">Bélgica gana Grupo G (+200)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="scenarioC">
+    <div class="card">
+      <div class="card-title">🟢 Escenario C — "América manda" (Prob: 15%)</div>
+      <p style="font-size:0.88rem;margin-bottom:0.5rem;">Argentina defiende el título. América domina. México llega a 4tos.</p>
+      <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;padding-left:0;">
+        <li>✅ Argentina campeón (Messi factor)</li>
+        <li>✅ México llega a 4tos de final (generacional)</li>
+        <li>✅ Colombia gana Grupo K sobre Portugal</li>
+        <li>✅ Fracaso europeo: Francia y España caen temprano</li>
+      </ul>
+      <div style="margin-top:0.5rem;font-size:0.82rem;">
+        <strong>Apuestas activas:</strong>
+        <span class="badge badge-green">Argentina campeón (+1400) — $1400</span>
+        <span class="badge badge-green">Colombia gana Grupo K (+200)</span>
+        <span class="badge badge-green">Finalista CONMEBOL (+300)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="scenarioD">
+    <div class="card">
+      <div class="card-title">🔴 Escenario D — "Se va todo al carajo" (Prob: 10%)</div>
+      <p style="font-size:0.88rem;margin-bottom:0.5rem;">Caos. Tormenta cancela partidos, incidentes de seguridad, lesiones masivas.</p>
+      <ul style="font-size:0.85rem;color:var(--text-mid);list-style:none;padding-left:0;">
+        <li>🔴 Tormenta eléctrica en CDMX afecta inaugural</li>
+        <li>🔴 Incidente de seguridad reportado (ISIS amenazas)</li>
+        <li>🔴 Lesiones masivas en fase de grupos</li>
+        <li>🔴 Calendario interrumpido</li>
+      </ul>
+      <div style="margin-top:0.5rem;font-size:0.82rem;color:var(--red);">
+        <strong>NI SE TE OCURRA.</strong> Esperar a que pase el caos.
+      </div>
+    </div>
+  </div>
+
+  <h3 style="color:var(--gold);font-size:0.9rem;margin-top:1.5rem;margin-bottom:0.5rem;">💰 Cuánto pelas en cada escenario</h3>
+  <div style="overflow-x:auto;">
+    <table class="data-table matrix-table">
+      <thead>
+        <tr><th>Apuesta</th><th>Lana a meter</th><th>Cuota</th><th>A (55%)</th><th>B (20%)</th><th>C (15%)</th><th>D (10%)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🇩🇪 Alemania campeón</td><td class="num">$200</td><td class="num">+1200</td><td class="check">✅ $2400</td><td class="check">✅ $2400</td><td class="cross">❌ $0</td><td class="cross">❌ $0</td></tr>
+        <tr><td>🇦🇷 Argentina campeón</td><td class="num">$100</td><td class="num">+1400</td><td class="cross">❌ $0</td><td class="cross">❌ $0</td><td class="check">✅ $1400</td><td class="cross">❌ $0</td></tr>
+        <tr><td>🇲🇽 México pasa grupo</td><td class="num">$300</td><td class="num">1.33</td><td class="check">✅ $400</td><td class="check">✅ $400</td><td class="check">✅ $400</td><td class="cross">❌ $0</td></tr>
+        <tr><td>🇵🇦 Panamá pasa grupo</td><td class="num">$50</td><td class="num">+350</td><td class="cross">❌ $0</td><td class="check">✅ $225</td><td class="cross">❌ $0</td><td class="cross">❌ $0</td></tr>
+        <tr style="border-top:2px solid var(--border);font-weight:700;">
+          <td>Ganancia Neta</td><td class="num">$650</td><td></td><td class="num value-green">+$3200</td><td class="num value-green">+$2975</td><td class="num value-green">+$2200</td><td class="num value-red">-$850</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-box">
+    <strong>📊 En promedio, sales con:</strong> (0.55 × 32) + (0.20 × 29.75) + (0.15 × 22) + (0.10 × -8.5) = <strong style="color:var(--gold);font-size:1.2rem;">en promedio ganas +26 de los que metiste</strong>
+  </div>
+</section>
+
+<!-- LESIONES -->
+<section id="lesiones">
+  <h2>🏥 <span class="gold">LESIONES</span> — Quién se quedó fuera</h2>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Quién</th><th>Juega en</th><th>Qué tiene</th><th>Qué tan jodido</th><th>Subió o bajó el precio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🚑 Rodrygo</td><td>🇧🇷 Brasil</td><td>Rotura LCA</td><td><span class="badge badge-red">Jodido</span></td><td>+700 → +900</td></tr>
+        <tr><td>🚑 Éder Militão</td><td>🇧🇷 Brasil</td><td>Lesión muscular grave</td><td><span class="badge badge-red">Jodido</span></td><td>+700 → +900</td></tr>
+        <tr><td>🚑 Hugo Ekitiké</td><td>🇫🇷 Francia</td><td>Rotura tendón de Aquiles</td><td><span class="badge badge-neutral">No importa</span></td><td>Sustituible (Mbappé)</td></tr>
+        <tr><td>🚑 Leonardo Balerdi</td><td>🇦🇷 Argentina</td><td>Desgarro sóleo derecho</td><td><span class="badge badge-yellow">Preocupante</span></td><td>Cuarto central, no titular</td></tr>
+        <tr><td>🚑 Marcel Ruiz</td><td>🇲🇽 México</td><td>Desgarro parcial LCA</td><td><span class="badge badge-neutral">Sin pedo</span></td><td>Recambio medio, sin efecto</td></tr>
+        <tr><td>🚑 Giovani Lo Celso</td><td>🇦🇷 Argentina</td><td>Post-cirugía</td><td><span class="badge badge-yellow">Preocupante</span></td><td>Cuota intacta</td></tr>
+        <tr><td>🚑 Nicolás González</td><td>🇦🇷 Argentina</td><td>Crónico</td><td><span class="badge badge-yellow">Preocupante</span></td><td>Cuota intacta</td></tr>
+        <tr><td>🚑 Ángel Correa</td><td>🇦🇷 Argentina</td><td>Crónico</td><td><span class="badge badge-yellow">Preocupante</span></td><td>Cuota intacta</td></tr>
+        <tr><td>🚑 Serge Gnabry</td><td>🇩🇪 Alemania</td><td>Desgarro aductor</td><td><span class="badge badge-neutral">Sin pedo</span></td><td>Sin cambio</td></tr>
+        <tr><td>🚑 Christian Eriksen</td><td>🇩🇰 Dinamarca</td><td><strong>Paro cardíaco</strong> (2° vez)</td><td><span class="badge badge-red">Ya valió</span></td><td>NI SE TE OCURRA con Dinamarca</td></tr>
+        <tr><td>🚑 Xavi Simons</td><td>🇳🇱 Países Bajos</td><td>Lesión de rodilla</td><td><span class="badge badge-red">Jodido</span></td><td>+2000 → +3000</td></tr>
+        <tr><td>🚑 Luis Ángel Malagón</td><td>🇲🇽 México</td><td>Tendón de Aquiles</td><td><span class="badge badge-neutral">Sin pedo</span></td><td>Sin cambio</td></tr>
+        <tr><td>⚠️ Lamine Yamal</td><td>🇪🇸 España</td><td>Molestias musculares</td><td><span class="badge badge-yellow">Preocupante</span></td><td>70% juega debut</td></tr>
+        <tr><td>⚠️ Nico Williams</td><td>🇪🇸 España</td><td>Molestias musculares</td><td><span class="badge badge-yellow">Preocupante</span></td><td>70% juega debut</td></tr>
+        <tr><td>⚠️ Víctor Muñoz</td><td>🇪🇸 España</td><td>Molestias musculares</td><td><span class="badge badge-neutral">Sin pedo</span></td><td>80% juega debut</td></tr>
+        <tr><td>⚠️ Neymar</td><td>🇧🇷 Brasil</td><td>Historial lesiones / sin amistosos</td><td><span class="badge badge-yellow">Preocupante</span></td><td>Riesgo latente</td></tr>
+        <tr><td>⚠️ CR7 (41 años)</td><td>🇵🇹 Portugal</td><td>Ritmo reducido</td><td><span class="badge badge-neutral">Sin pedo</span></td><td>Baja funcional</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="summary-box" style="border-left-color:var(--red);">
+    <strong>⚡ lo peorcito:</strong> España sin Yamal/Nico = pierde identidad ofensiva. Brasil sin Rodrygo/Militão = subió cuota. <strong>Alemania sin Gnabry = sin impacto.</strong> Dinamarca sin Eriksen = equipo destruido anímicamente.
+  </div>
+</section>
+
+<!-- CALENDARIO -->
+<section id="calendario">
+  <h2>📅 <span class="gold">CALENDARIO</span> — Primera Semana (11-17 Jun)</h2>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Fecha</th><th>Hora CDMX</th><th>Partido</th><th>Grupo</th><th>Sede</th><th>Clima</th><th>El chisme</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(204,0,0,0.05);border-left:3px solid var(--blood);">
+          <td><strong>11 Jun</strong></td><td><strong>14:00</strong></td><td>🇲🇽 México vs 🇿🇦 Sudáfrica</td><td>A</td><td>🏟️ Azteca, CDMX</td><td>🌧️ Tormenta</td><td>🏆 INAUGURAL</td></tr>
+        <tr><td>11 Jun</td><td>18:00</td><td>🇨🇦 Canadá vs 🇧🇦 Bosnia</td><td>B</td><td>🏟️ BMO, Toronto</td><td>☀️ Despejado</td><td>🏠 Anfitrión</td></tr>
+        <tr><td>11 Jun</td><td>20:00</td><td>🇰🇷 Corea vs 🇨🇿 Chequia</td><td>A</td><td>🏟️ Akron, GDL</td><td>☀️ Despejado</td><td>⚔️ Pelea 2° lugar</td></tr>
+        <tr><td>12 Jun</td><td>11:00</td><td>🇩🇪 Alemania vs 🇨🇼 Curazao</td><td>E</td><td>🏟️ AT&T, Arlington</td><td>☀️ Cálido</td><td>🇩🇪 Debut favorito</td></tr>
+        <tr><td>12 Jun</td><td>14:00</td><td>🇺🇸 EEUU vs 🇵🇾 Paraguay</td><td>D</td><td>🏟️ AT&T, Arlington</td><td>☀️ Cálido</td><td>🏠 Anfitrión</td></tr>
+        <tr><td>12 Jun</td><td>17:00</td><td>🇧🇷 Brasil vs 🇭🇹 Haití</td><td>C</td><td>🏟️ SoFi, Los Ángeles</td><td>☀️ Despejado</td><td>⚡ Goleada probable</td></tr>
+        <tr><td>12 Jun</td><td>20:00</td><td>🇳🇱 Países Bajos vs 🇹🇳 Túnez</td><td>F</td><td>🏟️ Levi's, Santa Clara</td><td>☀️ Fresco</td><td>🧀 Holanda favorita</td></tr>
+        <tr><td>13 Jun</td><td>11:00</td><td>🇪🇸 España vs 🇨🇻 Cabo Verde</td><td>H</td><td>🏟️ Lumen, Seattle</td><td>🌤️ Templado</td><td>🇪🇸 España favorita</td></tr>
+        <tr><td>13 Jun</td><td>14:00</td><td>🇫🇷 Francia vs 🇸🇳 Senegal</td><td>I</td><td>🏟️ NRG, Houston</td><td>☀️ Húmedo</td><td>⚠️ Francia vs el rival más fuerte del grupo</td></tr>
+        <tr><td>13 Jun</td><td>17:00</td><td>🇧🇪 Bélgica vs 🇪🇬 Egipto</td><td>G</td><td>🏟️ Levi's, Santa Clara</td><td>☀️ Fresco</td><td>⭐ <strong>Salah vs De Bruyne</strong></td></tr>
+        <tr style="background:rgba(255,215,0,0.05);">
+          <td><strong>13 Jun</strong></td><td><strong>20:00</strong></td><td>🇦🇷 Argentina vs 🇦🇹 Austria</td><td>J</td><td>🏟️ Hard Rock, Miami</td><td>🌤️ Cálido</td><td>⭐ <strong>MESSI vs debutante europeo</strong></td></tr>
+        <tr><td>14 Jun</td><td>11:00</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra vs 🇭🇷 Croacia</td><td>L</td><td>🏟️ M-B, Atlanta</td><td>☀️ Cálido</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Debut vs rival fuerte</td></tr>
+        <tr><td>14 Jun</td><td>14:00</td><td>🇵🇹 Portugal vs 🇨🇩 DR Congo</td><td>K</td><td>🏟️ Lincoln, Philadelphia</td><td>☀️ Templado</td><td>🇵🇹 CR7 41 años</td></tr>
+        <tr><td>14 Jun</td><td>17:00</td><td>🇪🇨 Ecuador vs 🇨🇮 Costa de Marfil</td><td>E</td><td>🏟️ Gillette, Foxborough</td><td>🌤️ Fresco</td><td>⚔️ Pelea 2° lugar Grupo E</td></tr>
+        <tr><td>14 Jun</td><td>20:00</td><td>🇨🇴 Colombia vs 🇺🇿 Uzbekistán</td><td>K</td><td>🏟️ Hard Rock, Miami</td><td>☀️ Cálido</td><td>🇨🇴 Luis Díaz</td></tr>
+        <tr><td>15 Jun</td><td>14:00</td><td>🇨🇭 Suiza vs 🇶🇦 Qatar</td><td>B</td><td>🏟️ BC Place, Vancouver</td><td>🌤️ Fresco</td><td></td></tr>
+        <tr><td>15 Jun</td><td>17:00</td><td>🇸🇪 Suecia vs 🇯🇵 Japón</td><td>F</td><td>🏟️ Lumen, Seattle</td><td>🌤️ Templado</td><td></td></tr>
+        <tr><td>15 Jun</td><td>20:00</td><td>🇺🇾 Uruguay vs 🇸🇦 Arabia Saudita</td><td>H</td><td>🏟️ BMO, Toronto</td><td>🌤️ Templado</td><td></td></tr>
+        <tr><td>16 Jun</td><td>14:00</td><td>🇲🇦 Marruecos vs 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia</td><td>C</td><td>🏟️ M-B, Atlanta</td><td>☀️ Cálido</td><td></td></tr>
+        <tr><td>16 Jun</td><td>17:00</td><td>🇳🇱 Países Bajos vs 🇸🇪 Suecia</td><td>F</td><td>🏟️ NRG, Houston</td><td>☀️ Húmedo</td><td>⚔️ Batalla por el 1° del grupo</td></tr>
+        <tr><td>16 Jun</td><td>20:00</td><td>🇩🇿 Argelia vs 🇯🇴 Jordania</td><td>J</td><td>🏟️ SoFi, Los Ángeles</td><td>☀️ Despejado</td><td></td></tr>
+        <tr><td>17 Jun</td><td>14:00</td><td>🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra vs 🇵🇦 Panamá</td><td>L</td><td>🏟️ Arrowhead, Kansas City</td><td>☀️ Cálido</td><td></td></tr>
+        <tr><td>17 Jun</td><td>17:00</td><td>🇳🇴 Noruega vs 🇮🇶 Irak</td><td>I</td><td>🏟️ BBVA, Monterrey</td><td>☀️ Cálido</td><td></td></tr>
+        <tr><td>17 Jun</td><td>20:00</td><td>🇮🇷 Irán vs 🇳🇿 Nueva Zelanda</td><td>G</td><td>🏟️ Hard Rock, Miami</td><td>🌤️ Cálido</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SELECCIONES -->
+<section id="selecciones">
+  <h2>🌍 <span class="gold">SELECCIONES</span> — lo que hay que saber</h2>
+
+  <!-- México -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇲🇽 <strong>México</strong> — Anfitrión, Grupo A</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>2% (+4900)</td><td class="label">Cuota</td><td>+5000</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#15</td><td class="label">Técnico</td><td>Javier Aguirre</td></tr>
+        <tr><td class="label">Grupo</td><td>A 🇲🇽🇰🇷🇨🇿🇿🇦</td><td class="label">Estrella</td><td>Santiago Giménez (Milan)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Defensa central sin jerarquía</td><td class="label">Cómo llegan</td><td>8 partidos sin perder (6G-2E)</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">7 eliminaciones consecutivas en octavos. Gilberto Mora (17) — jugador más joven desde Pelé 1958</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Francia -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇫🇷 <strong>Francia</strong> — Subcampeón 2022, Grupo I</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>16% (+525)</td><td class="label">Cuota</td><td>+500</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#2</td><td class="label">Técnico</td><td>Didier Deschamps</td></tr>
+        <tr><td class="label">Grupo</td><td>I 🇫🇷🇸🇳🇳🇴🇮🇶</td><td class="label">Estrella</td><td>Kylian Mbappé (Real Madrid)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Defensa inconsistente (Upamecano)</td><td class="label">Cómo llegan</td><td>Perdió 1-2 vs Costa de Marfil ⚠️</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">Mbappé: 12 goles en 2 Mundiales. 22% Balón de Oro Polymarket. Si gana, sería 3° título en 4 Mundiales</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <!-- España -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇪🇸 <strong>España</strong> — Campeón Euro 2024, Grupo H</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>16% (+525)</td><td class="label">Cuota</td><td>+600</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#6</td><td class="label">Técnico</td><td>Luis de la Fuente</td></tr>
+        <tr><td class="label">Grupo</td><td>H 🇪🇸🇺🇾🇸🇦🇨🇻</td><td class="label">Estrella</td><td>Rodri Hernández (Man City) — Balón de Oro</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Dependencia de extremos lesionados</td><td class="label">Cómo llegan</td><td>1-1 vs Irak (sin Yamal/Nico) ⚠️</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">EA Sports predice a España campeón — acertó últimos 4 (2014, 2018, 2022). Uruguay puede ganar el Grupo H</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Argentina -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇦🇷 <strong>Argentina</strong> — Campeón Defensor, Grupo J</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>8% (+1150)</td><td class="label">Cuota</td><td>+1400</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#3</td><td class="label">Técnico</td><td>Lionel Scaloni</td></tr>
+        <tr><td class="label">Grupo</td><td>J 🇦🇷🇩🇿🇦🇹🇯🇴</td><td class="label">Estrella</td><td>Lionel Messi (38, 6° Mundial)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Banca corta (4 bajas confirmadas)</td><td class="label">Cómo llegan</td><td>Amistoso vs Austria — Messi 60' en forma, grupo accesible</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">+1400 = regalo. Polymarket 8% vs casa 6.7%. 11 titular casi el mismo de 2022. Messi sano = candidatos</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Alemania -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇩🇪 <strong>Alemania</strong> 🎯 La joyita del torneo — Grupo E</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>9% (+1011) ⬆️</td><td class="label">Cuota</td><td>+1200</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#10</td><td class="label">Técnico</td><td>Julian Nagelsmann</td></tr>
+        <tr><td class="label">Grupo</td><td>E 🇩🇪🇨🇼🇨🇮🇪🇨</td><td class="label">Estrella</td><td>Jamal Musiala (Bayern, 23)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Falta de 9 killer (Havertz no es clásico)</td><td class="label">Cómo llegan</td><td>Invicta bajo Nagelsmann</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">Bajo volumen Polymarket ($288K) = equipo "dormido". Gnabry baja sin impacto. Grupo E muy accesible. +1200 desaparecerá si golean a Curazao</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bélgica -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇧🇪 <strong>Bélgica</strong> — Cabeza del Grupo G</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>3% (+2800)</td><td class="label">Cuota</td><td>+2800</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#7</td><td class="label">Técnico</td><td>Rudi Garcia</td></tr>
+        <tr><td class="label">Grupo</td><td>G 🇧🇪🇪🇬🇮🇷🇳🇿</td><td class="label">Estrella</td><td>Kevin De Bruyne (Man City)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Defensa envejecida, generación dorada al final</td><td class="label">Cómo llegan</td><td>Irregulares en eliminatorias</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">Bélgica +2800 es una ganga si pasa de grupo con De Bruyne inspirado. Salah vs De Bruyne en el debut es partidazo.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Inglaterra -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 <strong>Inglaterra</strong> — Cabeza del Grupo L</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>11% (+800)</td><td class="label">Cuota</td><td>+800</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#4</td><td class="label">Técnico</td><td>Thomas Tuchel</td></tr>
+        <tr><td class="label">Grupo</td><td>L 🏴󠁧󠁢󠁥󠁮󠁧󠁿🇭🇷🇬🇭🇵🇦</td><td class="label">Estrella</td><td>Jude Bellingham (Real Madrid)</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Tradición de fracaso en penales</td><td class="label">Cómo llegan</td><td>Sólidos en eliminatorias</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">Tuchel al mando cambia la mentalidad. Croacia en el grupo es la única amenaza real. Si ganan el grupo, camino despejado a 4tos.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Egipto -->
+  <div class="team-profile">
+    <div class="team-profile-header" onclick="toggleProfile(this)">
+      <span>🇪🇬 <strong>Egipto</strong> — Grupo G</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="team-profile-body">
+      <table>
+        <tr><td class="label">Polymarket</td><td>&lt;1%</td><td class="label">Cuota</td><td>+15000</td></tr>
+        <tr><td class="label">Posición FIFA</td><td>#34</td><td class="label">Técnico</td><td>Hossam Hassan</td></tr>
+        <tr><td class="label">Grupo</td><td>G 🇧🇪🇪🇬🇮🇷🇳🇿</td><td class="label">Estrella</td><td>Mohamed Salah (Liverpool) — probable último Mundial</td></tr>
+        <tr><td class="label">Su talón de Aquiles</td><td>Dependencia total de Salah, defensa frágil</td><td class="label">Cómo llegan</td><td>Ganaron su grupo de eliminatorias africanas</td></tr>
+        <tr><td class="label">Lo que nadie te dice</td><td colspan="3">Salah es top 5 del mundo pero su equipo es limitado. Si Egipto pasa de grupo, sería la campanada africana del torneo.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SEGUIMIENTO -->
+<section id="seguimiento">
+  <h2>📊 <span class="gold">SEGUIMIENTO</span> — lo que dijimos vs lo que pasó</h2>
+  <div style="overflow-x:auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Fecha</th><th>Partido</th><th>Lo que dijimos</th><th>Lo que pasó</th><th>Ganancia/Pérdida</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>11 Jun</td><td>🇲🇽 México vs 🇿🇦 Sudáfrica</td><td>✅ México gana (-184)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+        <tr><td>11 Jun</td><td>🇨🇦 Canadá vs 🇧🇦 Bosnia</td><td>✅ Canadá gana (+120)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+        <tr><td>11 Jun</td><td>🇰🇷 Corea vs 🇨🇿 Chequia</td><td>⚪ Más de 2.5 goles (~1.90)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+        <tr><td>12 Jun</td><td>🇧🇷 Brasil vs 🇭🇹 Haití</td><td>✅ Over 3.5 goles (+120)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+        <tr><td>12 Jun</td><td>🇩🇪 Alemania vs 🇨🇼 Curazao</td><td>✅ Over 3.5 goles (~1.85)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+        <tr><td>13 Jun</td><td>🇦🇷 Argentina vs 🇦🇹 Austria</td><td>✅ Argentina gana (-200)</td><td>⏳ Pendiente</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <div class="card-title">📈 Vamos ganando o perdiendo</div>
+    <div class="bankroll-label">
+      <span>Total que le has metido: <strong id="roiStaked">$0</strong></span>
+      <span>Lo que has ganado: <strong id="roiWon">$0</strong></span>
+      <span>Tu ganancia/pérdida: <strong id="roiPercent" class="value-neutral">0%</strong></span>
+    </div>
+    <div class="bankroll-bar">
+      <div class="bankroll-fill" id="roiFill" style="width:0%;background:linear-gradient(90deg,#333,var(--text-dim));">0%</div>
+    </div>
+    <p style="font-size:0.75rem;color:var(--text-dim);margin-top:0.5rem;">Los resultados se actualizarán manualmente conforme avance el torneo.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin-bottom:0.3rem;">
+    <span class="blood" style="font-weight:900;">🎰 Pocos Caviares</span> — La casa de apuestas de los que saben
+  </div>
+  <div style="margin-bottom:0.3rem;">
+    <strong>Análisis:</strong> Lalo Carrillo & Afrin | <strong>Datos:</strong> Polymarket, Caliente.mx, Melbet | <strong>Al día:</strong> 9 Jun 2026 — Faltan <span id="footerDays">2</span> días
+  </div>
+  <div style="font-size:0.6rem;color:var(--text-dim);margin-top:0.2rem;">
+    🛑 Juega con responsabilidad. Prohibido para menores de edad. Este contenido es informativo, no es consejo financiero.
+  </div>
+</footer>
+
+<script>
+// ===== COUNTDOWN =====
+function updateCountdown() {
+  const target = new Date('2026-06-11T13:00:00-06:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) { document.getElementById('countdown').innerHTML = '🔥 ¡EL MUNDIAL YA EMPEZÓ!'; return; }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('countdown').innerHTML =
+    `⏳ <span>${d}</span>d <span>${String(h).padStart(2,'0')}</span>h <span>${String(m).padStart(2,'0')}</span>m <span>${String(s).padStart(2,'0')}</span>s para el INICIAL 🏆`;
+  document.getElementById('footerDays').textContent = d;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ===== SCENARIO TABS =====
+function switchScenario(scenario) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('scenario' + scenario).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const idx = {A:0, B:1, C:2, D:3}[scenario];
+  if (btns[idx]) btns[idx].classList.add('active');
+}
+
+// ===== TEAM PROFILES =====
+function toggleProfile(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  header.classList.toggle('open');
+}
+
+// ===== GROUP SEARCH =====
+function filterGroups() {
+  const q = document.getElementById('groupSearch').value.toLowerCase().trim();
+  document.querySelectorAll('.group-card').forEach(card => {
+    const teams = card.getAttribute('data-teams') || '';
+    card.style.display = (!q || teams.includes(q)) ? '' : 'none';
+  });
+}
+
+
+</script>
+</body>
+</html>
