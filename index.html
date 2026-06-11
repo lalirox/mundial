@@ -1324,3 +1324,241 @@ function filterGroups() {
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probabilidades Mundial 2026 — Primera Ronda</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; margin: 0; padding: 20px; }
+  h1 { text-align: center; color: #ffd700; font-size: 1.8em; margin-bottom: 5px; }
+  .subtitle { text-align: center; color: #888; font-size: 0.9em; margin-bottom: 25px; }
+  .grupo { background: #141420; border: 1px solid #2a2a3a; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+  .grupo-header { background: #1a1a2e; padding: 10px 15px; font-weight: bold; font-size: 1.2em; color: #ffd700; border-bottom: 2px solid #ffd70044; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #1e1e32; padding: 8px 10px; text-align: left; font-size: 0.75em; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #2a2a3a; }
+  td { padding: 8px 10px; border-bottom: 1px solid #1e1e28; font-size: 0.85em; }
+  tr:hover { background: #1a1a28; }
+  .local { text-align: right; font-weight: 500; }
+  .visitante { font-weight: 500; }
+  .vs { text-align: center; color: #666; font-size: 0.8em; width: 20px; }
+  .prob { text-align: center; font-weight: bold; color: #4caf50; }
+  .prob-e { text-align: center; color: #ffc107; }
+  .prob-v { text-align: center; color: #f44336; }
+  .score { text-align: center; font-weight: bold; color: #ffd700; font-size: 0.95em; }
+  .cuota { text-align: center; color: #888; font-size: 0.8em; }
+  .media-box { background: linear-gradient(135deg, #1a1a2e, #0a0a1a); border: 2px solid #ffd700; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center; }
+  .media-box h2 { margin: 0; color: #ffd700; font-size: 1.1em; }
+  .media-box .big { font-size: 2.5em; font-weight: bold; color: #fff; }
+  .media-box .detail { color: #aaa; font-size: 0.85em; margin-top: 5px; }
+  .legend { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; font-size: 0.8em; color: #888; }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .dot-l { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #4caf50; }
+  .dot-e { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ffc107; }
+  .dot-v { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f44336; }
+  @media (max-width: 600px) { body { padding: 10px; } td, th { padding: 5px 4px; font-size: 0.75em; } }
+</style>
+</head>
+<body>
+<h1>🏆 Probabilidades de Marcador — Mundial 2026</h1>
+<p class="subtitle">Primera ronda (fase de grupos) · 72 partidos · Estimados basados en ranking FIFA + cuotas de mercado</p>
+
+<div class="media-box">
+  <h2>📊 Media General del Torneo</h2>
+  <div class="big">2.47</div>
+  <div class="detail">Goles por partido (promedio estimado)</div>
+  <div style="margin-top:10px; display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+    <span style="color:#ffd700;font-weight:bold;">⚽ Marcador más repetido: 2-0</span>
+    <span style="color:#aaa;">2° más común: 1-0</span>
+    <span style="color:#aaa;">3° más común: 2-1</span>
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="dot-l"></span> Local favorito</span>
+  <span><span class="dot-e"></span> Empate probable</span>
+  <span><span class="dot-v"></span> Visitante favorito</span>
+</div>
+
+<!-- GRUPO A -->
+<div class="grupo">
+  <div class="grupo-header">🇲🇽 Grupo A: México · Sudáfrica · Corea del Sur · Chequia</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇲🇽 México</td><td class="vs">vs</td><td class="visitante">🇿🇦 Sudáfrica</td><td class="prob">67%</td><td class="prob-e">23%</td><td class="prob-v">10%</td><td class="score">1-0</td><td class="cuota">5.50</td></tr>
+    <tr><td>2</td><td class="local">🇰🇷 Corea del Sur</td><td class="vs">vs</td><td class="visitante">🇨🇿 Chequia</td><td class="prob">32%</td><td class="prob-e">35%</td><td class="prob-v">33%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>3</td><td class="local">🇲🇽 México</td><td class="vs">vs</td><td class="visitante">🇰🇷 Corea del Sur</td><td class="prob">58%</td><td class="prob-e">25%</td><td class="prob-v">17%</td><td class="score">2-0</td><td class="cuota">7.00</td></tr>
+    <tr><td>4</td><td class="local">🇨🇿 Chequia</td><td class="vs">vs</td><td class="visitante">🇿🇦 Sudáfrica</td><td class="prob">48%</td><td class="prob-e">30%</td><td class="prob-v">22%</td><td class="score">1-1</td><td class="cuota">6.50</td></tr>
+    <tr><td>5</td><td class="local">🇿🇦 Sudáfrica</td><td class="vs">vs</td><td class="visitante">🇰🇷 Corea del Sur</td><td class="prob">25%</td><td class="prob-e">30%</td><td class="prob-v">45%</td><td class="score">1-2</td><td class="cuota">8.50</td></tr>
+    <tr><td>6</td><td class="local">🇨🇿 Chequia</td><td class="vs">vs</td><td class="visitante">🇲🇽 México</td><td class="prob">20%</td><td class="prob-e">28%</td><td class="prob-v">52%</td><td class="score">0-1</td><td class="cuota">6.00</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO B -->
+<div class="grupo">
+  <div class="grupo-header">🇨🇦 Grupo B: Canadá · Bosnia · Qatar · Suiza</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇨🇦 Canadá</td><td class="vs">vs</td><td class="visitante">🇧🇦 Bosnia</td><td class="prob">55%</td><td class="prob-e">26%</td><td class="prob-v">19%</td><td class="score">2-0</td><td class="cuota">7.50</td></tr>
+    <tr><td>2</td><td class="local">🇨🇭 Suiza</td><td class="vs">vs</td><td class="visitante">🇶🇦 Qatar</td><td class="prob">58%</td><td class="prob-e">25%</td><td class="prob-v">17%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>3</td><td class="local">🇧🇦 Bosnia</td><td class="vs">vs</td><td class="visitante">🇶🇦 Qatar</td><td class="prob">40%</td><td class="prob-e">32%</td><td class="prob-v">28%</td><td class="score">1-0</td><td class="cuota">5.50</td></tr>
+    <tr><td>4</td><td class="local">🇨🇦 Canadá</td><td class="vs">vs</td><td class="visitante">🇨🇭 Suiza</td><td class="prob">38%</td><td class="prob-e">32%</td><td class="prob-v">30%</td><td class="score">1-1</td><td class="cuota">6.50</td></tr>
+    <tr><td>5</td><td class="local">🇶🇦 Qatar</td><td class="vs">vs</td><td class="visitante">🇨🇦 Canadá</td><td class="prob">22%</td><td class="prob-e">28%</td><td class="prob-v">50%</td><td class="score">0-2</td><td class="cuota">9.00</td></tr>
+    <tr><td>6</td><td class="local">🇧🇦 Bosnia</td><td class="vs">vs</td><td class="visitante">🇨🇭 Suiza</td><td class="prob">28%</td><td class="prob-e">30%</td><td class="prob-v">42%</td><td class="score">0-1</td><td class="cuota">6.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO C -->
+<div class="grupo">
+  <div class="grupo-header">🇧🇷 Grupo C: Brasil · Haití · Marruecos · Escocia</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇧🇷 Brasil</td><td class="vs">vs</td><td class="visitante">🇭🇹 Haití</td><td class="prob">82%</td><td class="prob-e">12%</td><td class="prob-v">6%</td><td class="score">4-0</td><td class="cuota">12.00</td></tr>
+    <tr><td>2</td><td class="local">🇲🇦 Marruecos</td><td class="vs">vs</td><td class="visitante">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia</td><td class="prob">45%</td><td class="prob-e">30%</td><td class="prob-v">25%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>3</td><td class="local">🇭🇹 Haití</td><td class="vs">vs</td><td class="visitante">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia</td><td class="prob">18%</td><td class="prob-e">25%</td><td class="prob-v">57%</td><td class="score">0-2</td><td class="cuota">8.50</td></tr>
+    <tr><td>4</td><td class="local">🇧🇷 Brasil</td><td class="vs">vs</td><td class="visitante">🇲🇦 Marruecos</td><td class="prob">65%</td><td class="prob-e">22%</td><td class="prob-v">13%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>5</td><td class="local">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia</td><td class="vs">vs</td><td class="visitante">🇧🇷 Brasil</td><td class="prob">10%</td><td class="prob-e">18%</td><td class="prob-v">72%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+    <tr><td>6</td><td class="local">🇭🇹 Haití</td><td class="vs">vs</td><td class="visitante">🇲🇦 Marruecos</td><td class="prob">12%</td><td class="prob-e">20%</td><td class="prob-v">68%</td><td class="score">0-3</td><td class="cuota">11.00</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO D -->
+<div class="grupo">
+  <div class="grupo-header">🇺🇸 Grupo D: EEUU · Paraguay · Australia · Turquía</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇺🇸 EEUU</td><td class="vs">vs</td><td class="visitante">🇵🇾 Paraguay</td><td class="prob">58%</td><td class="prob-e">25%</td><td class="prob-v">17%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>2</td><td class="local">🇹🇷 Turquía</td><td class="vs">vs</td><td class="visitante">🇦🇺 Australia</td><td class="prob">48%</td><td class="prob-e">28%</td><td class="prob-v">24%</td><td class="score">2-1</td><td class="cuota">8.00</td></tr>
+    <tr><td>3</td><td class="local">🇵🇾 Paraguay</td><td class="vs">vs</td><td class="visitante">🇦🇺 Australia</td><td class="prob">42%</td><td class="prob-e">32%</td><td class="prob-v">26%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>4</td><td class="local">🇺🇸 EEUU</td><td class="vs">vs</td><td class="visitante">🇹🇷 Turquía</td><td class="prob">52%</td><td class="prob-e">28%</td><td class="prob-v">20%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>5</td><td class="local">🇦🇺 Australia</td><td class="vs">vs</td><td class="visitante">🇺🇸 EEUU</td><td class="prob">20%</td><td class="prob-e">25%</td><td class="prob-v">55%</td><td class="score">0-2</td><td class="cuota">8.00</td></tr>
+    <tr><td>6</td><td class="local">🇵🇾 Paraguay</td><td class="vs">vs</td><td class="visitante">🇹🇷 Turquía</td><td class="prob">35%</td><td class="prob-e">32%</td><td class="prob-v">33%</td><td class="score">1-1</td><td class="cuota">6.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO E -->
+<div class="grupo">
+  <div class="grupo-header">🇩🇪 Grupo E: Alemania · Curazao · Ecuador · Costa de Marfil</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇩🇪 Alemania</td><td class="vs">vs</td><td class="visitante">🇨🇼 Curazao</td><td class="prob">78%</td><td class="prob-e">15%</td><td class="prob-v">7%</td><td class="score">3-0</td><td class="cuota">9.00</td></tr>
+    <tr><td>2</td><td class="local">🇸🇪 Suecia</td><td class="vs">vs</td><td class="visitante">🇨🇮 Costa de Marfil</td><td class="prob">38%</td><td class="prob-e">32%</td><td class="prob-v">30%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>3</td><td class="local">🇨🇼 Curazao</td><td class="vs">vs</td><td class="visitante">🇨🇮 Costa de Marfil</td><td class="prob">12%</td><td class="prob-e">20%</td><td class="prob-v">68%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+    <tr><td>4</td><td class="local">🇩🇪 Alemania</td><td class="vs">vs</td><td class="visitante">🇸🇪 Suecia</td><td class="prob">62%</td><td class="prob-e">24%</td><td class="prob-v">14%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>5</td><td class="local">🇨🇮 Costa de Marfil</td><td class="vs">vs</td><td class="visitante">🇩🇪 Alemania</td><td class="prob">18%</td><td class="prob-e">22%</td><td class="prob-v">60%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+    <tr><td>6</td><td class="local">🇨🇼 Curazao</td><td class="vs">vs</td><td class="visitante">🇸🇪 Suecia</td><td class="prob">8%</td><td class="prob-e">15%</td><td class="prob-v">77%</td><td class="score">0-3</td><td class="cuota">10.00</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO F -->
+<div class="grupo">
+  <div class="grupo-header">🇳🇱 Grupo F: Países Bajos · Ecuador · Japón · Senegal</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇳🇱 Países Bajos</td><td class="vs">vs</td><td class="visitante">🇪🇨 Ecuador</td><td class="prob">55%</td><td class="prob-e">28%</td><td class="prob-v">17%</td><td class="score">2-0</td><td class="cuota">6.00</td></tr>
+    <tr><td>2</td><td class="local">🇯🇵 Japón</td><td class="vs">vs</td><td class="visitante">🇸🇳 Senegal</td><td class="prob">42%</td><td class="prob-e">30%</td><td class="prob-v">28%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>3</td><td class="local">🇪🇨 Ecuador</td><td class="vs">vs</td><td class="visitante">🇸🇳 Senegal</td><td class="prob">40%</td><td class="prob-e">32%</td><td class="prob-v">28%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>4</td><td class="local">🇳🇱 Países Bajos</td><td class="vs">vs</td><td class="visitante">🇯🇵 Japón</td><td class="prob">52%</td><td class="prob-e">28%</td><td class="prob-v">20%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>5</td><td class="local">🇸🇳 Senegal</td><td class="vs">vs</td><td class="visitante">🇳🇱 Países Bajos</td><td class="prob">28%</td><td class="prob-e">30%</td><td class="prob-v">42%</td><td class="score">1-2</td><td class="cuota">8.00</td></tr>
+    <tr><td>6</td><td class="local">🇪🇨 Ecuador</td><td class="vs">vs</td><td class="visitante">🇯🇵 Japón</td><td class="prob">38%</td><td class="prob-e">32%</td><td class="prob-v">30%</td><td class="score">1-1</td><td class="cuota">6.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO G -->
+<div class="grupo">
+  <div class="grupo-header">🇦🇷 Grupo G: Argentina · Noruega · Uruguay · Irán</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇦🇷 Argentina</td><td class="vs">vs</td><td class="visitante">🇳🇴 Noruega</td><td class="prob">55%</td><td class="prob-e">25%</td><td class="prob-v">20%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>2</td><td class="local">🇺🇾 Uruguay</td><td class="vs">vs</td><td class="visitante">🇮🇷 Irán</td><td class="prob">48%</td><td class="prob-e">30%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>3</td><td class="local">🇳🇴 Noruega</td><td class="vs">vs</td><td class="visitante">🇮🇷 Irán</td><td class="prob">50%</td><td class="prob-e">28%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>4</td><td class="local">🇦🇷 Argentina</td><td class="vs">vs</td><td class="visitante">🇺🇾 Uruguay</td><td class="prob">52%</td><td class="prob-e">28%</td><td class="prob-v">20%</td><td class="score">1-0</td><td class="cuota">5.50</td></tr>
+    <tr><td>5</td><td class="local">🇮🇷 Irán</td><td class="vs">vs</td><td class="visitante">🇦🇷 Argentina</td><td class="prob">10%</td><td class="prob-e">18%</td><td class="prob-v">72%</td><td class="score">0-2</td><td class="cuota">7.00</td></tr>
+    <tr><td>6</td><td class="local">🇳🇴 Noruega</td><td class="vs">vs</td><td class="visitante">🇺🇾 Uruguay</td><td class="prob">38%</td><td class="prob-e">30%</td><td class="prob-v">32%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO H -->
+<div class="grupo">
+  <div class="grupo-header">🇪🇸 Grupo H: España · Uzbekistán · Bélgica · Cabo Verde</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇪🇸 España</td><td class="vs">vs</td><td class="visitante">🇺🇿 Uzbekistán</td><td class="prob">68%</td><td class="prob-e">20%</td><td class="prob-v">12%</td><td class="score">2-0</td><td class="cuota">6.00</td></tr>
+    <tr><td>2</td><td class="local">🇧🇪 Bélgica</td><td class="vs">vs</td><td class="visitante">🇨🇻 Cabo Verde</td><td class="prob">70%</td><td class="prob-e">20%</td><td class="prob-v">10%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>3</td><td class="local">🇺🇿 Uzbekistán</td><td class="vs">vs</td><td class="visitante">🇨🇻 Cabo Verde</td><td class="prob">45%</td><td class="prob-e">30%</td><td class="prob-v">25%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>4</td><td class="local">🇪🇸 España</td><td class="vs">vs</td><td class="visitante">🇧🇪 Bélgica</td><td class="prob">42%</td><td class="prob-e">30%</td><td class="prob-v">28%</td><td class="score">1-1</td><td class="cuota">6.50</td></tr>
+    <tr><td>5</td><td class="local">🇨🇻 Cabo Verde</td><td class="vs">vs</td><td class="visitante">🇪🇸 España</td><td class="prob">8%</td><td class="prob-e">15%</td><td class="prob-v">77%</td><td class="score">0-2</td><td class="cuota">7.00</td></tr>
+    <tr><td>6</td><td class="local">🇺🇿 Uzbekistán</td><td class="vs">vs</td><td class="visitante">🇧🇪 Bélgica</td><td class="prob">18%</td><td class="prob-e">22%</td><td class="prob-v">60%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO I -->
+<div class="grupo">
+  <div class="grupo-header">🇫🇷 Grupo I: Francia · Túnez · Irak · Kenia</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇫🇷 Francia</td><td class="vs">vs</td><td class="visitante">🇹🇳 Túnez</td><td class="prob">65%</td><td class="prob-e">22%</td><td class="prob-v">13%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>2</td><td class="local">🇰🇪 Kenia</td><td class="vs">vs</td><td class="visitante">🇮🇶 Irak</td><td class="prob">35%</td><td class="prob-e">33%</td><td class="prob-v">32%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+    <tr><td>3</td><td class="local">🇹🇳 Túnez</td><td class="vs">vs</td><td class="visitante">🇮🇶 Irak</td><td class="prob">48%</td><td class="prob-e">30%</td><td class="prob-v">22%</td><td class="score">1-0</td><td class="cuota">5.00</td></tr>
+    <tr><td>4</td><td class="local">🇫🇷 Francia</td><td class="vs">vs</td><td class="visitante">🇰🇪 Kenia</td><td class="prob">75%</td><td class="prob-e">17%</td><td class="prob-v">8%</td><td class="score">3-0</td><td class="cuota">9.00</td></tr>
+    <tr><td>5</td><td class="local">🇮🇶 Irak</td><td class="vs">vs</td><td class="visitante">🇫🇷 Francia</td><td class="prob">10%</td><td class="prob-e">15%</td><td class="prob-v">75%</td><td class="score">0-3</td><td class="cuota">9.50</td></tr>
+    <tr><td>6</td><td class="local">🇹🇳 Túnez</td><td class="vs">vs</td><td class="visitante">🇰🇪 Kenia</td><td class="prob">52%</td><td class="prob-e">28%</td><td class="prob-v">20%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO J -->
+<div class="grupo">
+  <div class="grupo-header">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Grupo J: Inglaterra · Argelia · Croacia · Austria</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="vs">vs</td><td class="visitante">🇩🇿 Argelia</td><td class="prob">62%</td><td class="prob-e">24%</td><td class="prob-v">14%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>2</td><td class="local">🇭🇷 Croacia</td><td class="vs">vs</td><td class="visitante">🇦🇹 Austria</td><td class="prob">45%</td><td class="prob-e">30%</td><td class="prob-v">25%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>3</td><td class="local">🇦🇷 Argentina</td><td class="vs">vs</td><td class="visitante">🇦🇹 Austria</td><td class="prob">58%</td><td class="prob-e">25%</td><td class="prob-v">17%</td><td class="score">2-0</td><td class="cuota">6.50</td></tr>
+    <tr><td>4</td><td class="local">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="vs">vs</td><td class="visitante">🇭🇷 Croacia</td><td class="prob">50%</td><td class="prob-e">28%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>5</td><td class="local">🇦🇹 Austria</td><td class="vs">vs</td><td class="visitante">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="prob">15%</td><td class="prob-e">22%</td><td class="prob-v">63%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+    <tr><td>6</td><td class="local">🇩🇿 Argelia</td><td class="vs">vs</td><td class="visitante">🇭🇷 Croacia</td><td class="prob">30%</td><td class="prob-e">32%</td><td class="prob-v">38%</td><td class="score">1-1</td><td class="cuota">6.00</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO K -->
+<div class="grupo">
+  <div class="grupo-header">🇵🇹 Grupo K: Portugal · Jordania · Colombia · Ghana</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🇵🇹 Portugal</td><td class="vs">vs</td><td class="visitante">🇯🇴 Jordania</td><td class="prob">72%</td><td class="prob-e">18%</td><td class="prob-v">10%</td><td class="score">3-0</td><td class="cuota">9.50</td></tr>
+    <tr><td>2</td><td class="local">🇨🇴 Colombia</td><td class="vs">vs</td><td class="visitante">🇬🇭 Ghana</td><td class="prob">50%</td><td class="prob-e">28%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>3</td><td class="local">🇯🇴 Jordania</td><td class="vs">vs</td><td class="visitante">🇬🇭 Ghana</td><td class="prob">28%</td><td class="prob-e">30%</td><td class="prob-v">42%</td><td class="score">1-2</td><td class="cuota">8.00</td></tr>
+    <tr><td>4</td><td class="local">🇵🇹 Portugal</td><td class="vs">vs</td><td class="visitante">🇨🇴 Colombia</td><td class="prob">52%</td><td class="prob-e">26%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+    <tr><td>5</td><td class="local">🇬🇭 Ghana</td><td class="vs">vs</td><td class="visitante">🇵🇹 Portugal</td><td class="prob">22%</td><td class="prob-e">25%</td><td class="prob-v">53%</td><td class="score">0-2</td><td class="cuota">7.00</td></tr>
+    <tr><td>6</td><td class="local">🇯🇴 Jordania</td><td class="vs">vs</td><td class="visitante">🇨🇴 Colombia</td><td class="prob">18%</td><td class="prob-e">22%</td><td class="prob-v">60%</td><td class="score">0-2</td><td class="cuota">6.50</td></tr>
+  </table>
+</div>
+
+<!-- GRUPO L -->
+<div class="grupo">
+  <div class="grupo-header">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Grupo L: Inglaterra · Ghana · Croacia · Panamá · Nueva Zelanda · Arabia Saudita</div>
+  <table>
+    <tr><th>#</th><th>Local</th><th class="vs"></th><th>Visitante</th><th>% Local</th><th>% Emp</th><th>% Vis</th><th>Marcador Probable</th><th>Cuota Est.</th></tr>
+    <tr><td>1</td><td class="local">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="vs">vs</td><td class="visitante">🇬🇭 Ghana</td><td class="prob">70%</td><td class="prob-e">20%</td><td class="prob-v">10%</td><td class="score">3-0</td><td class="cuota">9.00</td></tr>
+    <tr><td>2</td><td class="local">🇭🇷 Croacia</td><td class="vs">vs</td><td class="visitante">🇵🇦 Panamá</td><td class="prob">65%</td><td class="prob-e">22%</td><td class="prob-v">13%</td><td class="score">2-0</td><td class="cuota">6.00</td></tr>
+    <tr><td>3</td><td class="local">🇳🇿 Nueva Zelanda</td><td class="vs">vs</td><td class="visitante">🇸🇦 Arabia Saudita</td><td class="prob">25%</td><td class="prob-e">30%</td><td class="prob-v">45%</td><td class="score">1-2</td><td class="cuota">8.00</td></tr>
+    <tr><td>4</td><td class="local">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="vs">vs</td><td class="visitante">🇭🇷 Croacia</td><td class="prob">50%</td><td class="prob-e">28%</td><td class="prob-v">22%</td><td class="score">2-1</td><td class="cuota">7.00</td></tr>
+    <tr><td>5</td><td class="local">🇵🇦 Panamá</td><td class="vs">vs</td><td class="visitante">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td><td class="prob">8%</td><td class="prob-e">15%</td><td class="prob-v">77%</td><td class="score">0-4</td><td class="cuota">12.00</td></tr>
+    <tr><td>6</td><td class="local">🇸🇦 Arabia Saudita</td><td class="vs">vs</td><td class="visitante">🇭🇷 Croacia</td><td class="prob">22%</td><td class="prob-e">25%</td><td class="prob-v">53%</td><td class="score">0-2</td><td class="cuota">7.50</td></tr>
+    <tr><td>7</td><td class="local">🇬🇭 Ghana</td><td class="vs">vs</td><td class="visitante">🇳🇿 Nueva Zelanda</td><td class="prob">55%</td><td class="prob-e">26%</td><td class="prob-v">19%</td><td class="score">2-0</td><td class="cuota">7.00</td></tr>
+    <tr><td>8</td><td class="local">🇸🇦 Arabia Saudita</td><td class="vs">vs</td><td class="visitante">🇵🇦 Panamá</td><td class="prob">52%</td><td class="prob-e">28%</td><td class="prob-v">20%</td><td class="score">2-1</td><td class="cuota">7.50</td></tr>
+  </table>
+</div>
+
+<div style="text-align:center; margin-top:20px; padding:15px; background:#141420; border-radius:8px; color:#666; font-size:0.8em;">
+  <p>📊 Datos estimados basados en ranking FIFA + cuotas de mercado de 13 casas de apuestas (promedio ponderado)</p>
+  <p>⚡ Las probabilidades son dinámicas — pueden cambiar con lesiones, clima, y eventos geopolíticos</p>
+  <p>🔄 Última actualización: 10 Junio 2026 · 19:40 CDMX</p>
+  <p>🦇 Alucard para Lord Lalo · Canal Entendiendo Cosas</p>
+</div>
+
+</body>
+</html>
+
